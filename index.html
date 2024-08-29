@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyper-SD: Trajectory Segmented Consistency Model for Efficient Image Synthesis</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+      </div>
+      <div class="container has-text-centered">
+        <h1 class="title is-1 publication-title">
+          Hyper-SD: 
+        </h1>
+        <h3 class="title is-3 publication-title">
+          Trajectory Segmented Consistency Model for Efficient Image Synthesis
+        </h3>
+        <div class="is-size-5 publication-authors">
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=C_6JH-IAAAAJ&hl=zh-CN&oi=ao">Yuxi Ren</a>, </div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=JP14UGgAAAAJ&hl=zh-CN&oi=ao">Xin Xia</a>, </div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=7YqvlBoAAAAJ&hl=zh-CN&oi=ao">Yanzuo Lu</a>, </div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=QmdyVQ0AAAAJ&hl=en">Jiacheng Zhang</a>,</div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=MxvLqLcAAAAJ&hl=zh-CN&oi=ao">Jie Wu</a>,</div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=Z-0EqtgAAAAJ">Pan Xie</a>,</div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=cswtxw4AAAAJ&hl=zh-CN&oi=ao">Xing Wang</a>,</div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=CVkM9TQAAAAJ">Xuefeng Xiao</a>*</div>
+
+
+                  
+        </div>
+
+        <div class="is-size-5 publication-authors">
+          <span class="author-block">ByteDance</span><br>
+          <span class="author-block"><sup>*</sup>&nbsp&nbsp<sup></sup>Project Lead</span>
+        </div>
+
+        <div class="column has-text-centered">
+          <div class="publication-links">
+          
+            <!-- arxiv link -->
+            <span class="link-block">
+              <a href="https://arxiv.org/abs/2404.13686"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                </span>
+                <span>arXiv</span>
+              </a>
+            </span>
+      
+            <!-- Model Link. -->
+            <span class="link-block">
+              <a href="https://huggingface.co/ByteDance/Hyper-SD"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span>🤗&nbsp;&nbsp;HuggingFace Repo</span>
+              </a>
+            </span>
+          
+             <!-- Demo Link. -->
+             <span class="link-block">
+              <a href="https://huggingface.co/spaces/ByteDance/Hyper-SDXL-1Step-T2I"
+                 class="external-link button is-normal is-rounded is-dark">
+                <span>🤗&nbsp;&nbsp;T2I Demo</span>
+                </a>
+            </span>
+
+              <!-- Demo Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/ByteDance/Hyper-SD15-Scribble"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>🤗&nbsp;&nbsp;Scribble Demo</span>
+                  </a>
+              </span>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <h2 class="subtitle has-text-justified">
+        <figure style="width: 100%;">
+          <a href="assets/figures/overview.png">
+              <img width="100%" src="static/images/hypersd_teaser_0420.png" />
+          </a>
+        </figure>
+        
+      </h2 >
+      
+        Visual Comparison between Hyper-SD and Other Methods. From the first column to the fourth column, the prompts of these images are (1)
+        <i>A dog wearing a white t-shirt, with the word “hyper” written on it ...</i> (2) <i>Abstract beauty, approaching perfection, pure form,
+        golden ratio, minimalistic, unfinished, ...</i> (3) <i>A crystal heart laying on moss in a serene zen garden ... </i>(4)<i>Anthropomorphic art of a scientist
+        stag, victorian inspired clothing by krenz cushart ... </i>, respectively.
+  
+    </div>
+  </div>
+ 
+</div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video poster="" id="tree" autoplay controls muted loop height="100%">
+        <!-- Your video here -->
+        <source src="static/videos/teaser_video.mov"
+        type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        Real-Time Generation Demo of Hyper-SD.
+      </h2>
+    </div>
+  </div>
+</section>
+<!-- End teaser video -->
+
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths">
+        <h2 class="title is-2, columns is-centered">Abstract</h2>
+      <br>
+      
+    </div>
+  </div>
+ 
+    
+  <p class="content has-text-justified">
+    
+Recently, a series of diffusion-aware distillation algorithms have emerged to alleviate the computational overhead associated with the multi-step inference process of Diffusion Models (DMs). Current distillation techniques often dichotomize into two distinct aspects: i) ODE Trajectory Preservation; and ii) ODE Trajectory Reformulation. However, these approaches suffer from severe performance degradation or domain shifts. To address these limitations, we propose <b><i><span style="color: red;">Hyper-SD</span></i></b>, a novel framework that synergistically amalgamates the advantages of ODE Trajectory Preservation and Reformulation, while maintaining near-lossless performance during step compression.
+Firstly, we introduce Trajectory Segmented Consistency Distillation to progressively perform consistent distillation within pre-defined time-step segments, which facilitates the preservation of the original ODE trajectory from a higher-order perspective.
+Secondly, we incorporate human feedback learning to boost the performance of the model in a low-step regime and mitigate the performance loss incurred by the distillation process. 
+Thirdly, we integrate score distillation to further improve the low-step generation capability of the model and offer the first attempt to leverage a unified LoRA to support the inference process at all steps.
+Extensive experiments and user studies demonstrate that Hyper-SD achieves SOTA performance from 1 to 8 inference steps for both SDXL and SD1.5.
+For example, Hyper-SDXL surpasses SDXL-Lightning by  <b>+0.68</b> in CLIP Score and <b>+0.51</b> in Aes Score in the 1-step inference. 
+
+
+
+   </p>
+</div>
+</section>
+
+
+
+<section class="section hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths">
+        <h2 class="title is-2, columns is-centered">Pipeline</h2>
+      <br>
+      <h2 class="subtitle has-text-justified">
+        <figure style="width: 100%;">
+          <a href="assets/figures/overview.png">
+              <img width="100%" src="static/images/hypersd_pipeline.png" />
+          </a>
+        </figure>
+      </h2>
+    </div>
+  </div>
+  <p>
+    Hyper-SD take the two-stage Progressive Consistency Distillation. The first stage involves consistency distillation in two separate time segments: [0, T/2] and [T/2 , T] to obtain the two segments consistency ODE. Then, this ODE trajectory is adopted to train a global consistency model in the subsequent stage
+   </p>
+</div>
+</section>
+
+
+
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Experiment</h2>
+
+        <div class="content has-text-justified">
+          <img src="static/images/hypersd_sdxl_results.png" />
+        </div>
+        <p class="content has-text-justified">
+          Qualitative comparisons between Hyper-SD and other LoRA-based acceleration approaches on SDXL architecture.
+        </p>
+
+        <div class="content has-text-justified">
+          <img src="static/images/hypersd_sd15_results.png" />
+        </div>
+
+        <p class="content has-text-justified">
+          Qualitative comparisons between Hyper-SD and other LoRA-based acceleration approaches on SD15 architecture.
+         
+        </p>
+
+           
+      
+
+        <div class="content has-text-justified">
+          <img src="static/images/hypersd_gsb.png" />
+        </div>
+        <p class="content has-text-justified">
+          Hyper-SD exhibits a remarkable superiority over existing methods that concentrate on acceleration and obtain more user preference on both SD1.5 and SDXL architectures.
+        </p>
+       
+        <div class="content has-text-justified">
+          <img src="static/images/hypersd_base_results.png" />
+        </div>
+        <p class="content has-text-justified">
+          Hyper-SD LoRAs with different steps can be applied to different base models and consistently generate high-quality images
+        </p>
+
+        <div class="content has-text-justified">
+          <img src="static/images/hypersd_controlnet_results.png" />
+        </div>
+        <p class="content has-text-justified">
+          The unified LoRAs of Hyper-SD are compatible with ControlNet. The examples are conditioned on either scribble or canny images.
+        </p>
+
+
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container content is-max-desktop">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@misc{ren2024hypersd,
+      title={Hyper-SD: Trajectory Segmented Consistency Model for Efficient Image Synthesis}, 
+      author={Yuxi Ren and Xin Xia and Yanzuo Lu and Jiacheng Zhang and Jie Wu and Pan Xie and Xing Wang and Xuefeng Xiao},
+      year={2024},
+      eprint={2404.13686},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://arxiv.org/pdf/2401.04468.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <div class="content">
+          <p>
+             The source code of this webpage is based on the <a href="https://github.com/nerfies/nerfies.github.io/"> Nerfies</a> project webpage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="./static/slick/slick.min.js"></script>
+</body>
+</html>
