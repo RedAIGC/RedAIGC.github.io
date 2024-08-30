@@ -1,102 +1,165 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hyper-SD: Trajectory Segmented Consistency Model for Efficient Image Synthesis</title>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Target-Driven Distillation">
+  <meta name="keywords" content="Diffusion Model, Consistency Models">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Target-Driven Distillation</title>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y5ZVQZ7NHC"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js_slide/fontawesome.all.min.js"></script>
+  <script src="static/js_slide/bulma-carousel.min.js"></script>
+  <script src="static/js_slide/bulma-slider.min.js"></script>
+  <script src="static/js_slide/index.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <!-- Vendor Stylesheets -->
+  <!--=================js==========================-->
+  <link rel="stylesheet" href="static/css/tab_gallery.css">
+  <link rel="stylesheet" href="static/css/juxtapose.css">
+  <link rel="stylesheet" href="static/css/image_card_fader.css">
+  <link rel="stylesheet" href="static/css/image_card_slider.css">
+</head>
 <body>
+
+
 
 
 <section class="hero">
   <div class="hero-body">
-    <div class="container">
+    <div class="container is-max-desktop">
       <div class="columns is-centered">
-      </div>
-      <div class="container has-text-centered">
-        <h1 class="title is-1 publication-title">
-          Hyper-SD: 
-        </h1>
-        <h3 class="title is-3 publication-title">
-          Trajectory Segmented Consistency Model for Efficient Image Synthesis
-        </h3>
-        <div class="is-size-5 publication-authors">
-          <div class="author-block"><a href="https://scholar.google.com/citations?user=C_6JH-IAAAAJ&hl=zh-CN&oi=ao">Yuxi Ren</a>, </div>
-          <div class="author-block"><a href="https://scholar.google.com/citations?user=JP14UGgAAAAJ&hl=zh-CN&oi=ao">Xin Xia</a>, </div>
-          <div class="author-block"><a href="https://scholar.google.com/citations?user=7YqvlBoAAAAJ&hl=zh-CN&oi=ao">Yanzuo Lu</a>, </div>
-          <div class="author-block"><a href="https://scholar.google.com/citations?user=QmdyVQ0AAAAJ&hl=en">Jiacheng Zhang</a>,</div>
-          <div class="author-block"><a href="https://scholar.google.com/citations?user=MxvLqLcAAAAJ&hl=zh-CN&oi=ao">Jie Wu</a>,</div>
-          <div class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=Z-0EqtgAAAAJ">Pan Xie</a>,</div>
-          <div class="author-block"><a href="https://scholar.google.com/citations?user=cswtxw4AAAAJ&hl=zh-CN&oi=ao">Xing Wang</a>,</div>
-          <div class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=CVkM9TQAAAAJ">Xuefeng Xiao</a>*</div>
-
-
-                  
-        </div>
-
-        <div class="is-size-5 publication-authors">
-          <span class="author-block">ByteDance</span><br>
-          <span class="author-block"><sup>*</sup>&nbsp&nbsp<sup></sup>Project Lead</span>
-        </div>
-
         <div class="column has-text-centered">
-          <div class="publication-links">
-          
-            <!-- arxiv link -->
-            <span class="link-block">
-              <a href="https://arxiv.org/abs/2404.13686"
-                 class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                </span>
-                <span>arXiv</span>
-              </a>
-            </span>
-      
-            <!-- Model Link. -->
-            <span class="link-block">
-              <a href="https://huggingface.co/ByteDance/Hyper-SD"
-                 class="external-link button is-normal is-rounded is-dark">
-                <span>🤗&nbsp;&nbsp;HuggingFace Repo</span>
-              </a>
-            </span>
-          
-             <!-- Demo Link. -->
-             <span class="link-block">
-              <a href="https://huggingface.co/spaces/ByteDance/Hyper-SDXL-1Step-T2I"
-                 class="external-link button is-normal is-rounded is-dark">
-                <span>🤗&nbsp;&nbsp;T2I Demo</span>
-                </a>
-            </span>
-
-              <!-- Demo Link. -->
+          <!-- <h1 class="title is-1 publication-title"><span style="color:#5e5ed2; font-weight: bold; font-style: italic"><strong>PCM</strong></span> : Phased Consistency Model</h1> -->
+          <h1 class="title is-1 publication-title">
+            TDD:Target-Driven Distillation
+          </h1>
+          <h3 class="title is-3 publication-title">
+            Consistency Distillation with Target Timestep Selection and Decoupled Guidance
+          </h3>
+          <div class="is-size-5 publication-authors">
+            <div class="author-block"><a href="https://github.com/WangCunzheng">Cunzheng Wang</a><sup>1</sup>, </div>
+            <div class="author-block"><a href="https://scholar.google.com/citations?user=JP14UGgAAAAJ&hl=zh-CN&oi=ao">Ziyuan Guo</a><sup>2</sup>, </div>
+            <div class="author-block"><a href="https://scholar.google.com/citations?user=7YqvlBoAAAAJ&hl=zh-CN&oi=ao">Yuxuan Duan</a><sup>3</sup>, </div>
+            <div class="author-block"><a href="https://scholar.google.com/citations?user=QmdyVQ0AAAAJ&hl=en">Jiacheng Zhang</a><sup>4</sup>,</div>
+            <div class="author-block"><a href="https://scholar.google.com/citations?user=MxvLqLcAAAAJ&hl=zh-CN&oi=ao">Huaxia Li</a><sup>5</sup>,</div>
+            <div class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=Z-0EqtgAAAAJ">HaiboZhao</a><sup>6</sup>,</div>
+            <div class="author-block"><a href="https://scholar.google.com/citations?user=cswtxw4AAAAJ&hl=zh-CN&oi=ao">Xu Tang</a><sup>7</sup>,</div>
+            <div class="author-block"><a href="https://scholar.google.com/citations?hl=zh-CN&user=CVkM9TQAAAAJ">Yao Hu</a>*</div>
+          </div>
+  
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Zhejiang University</span>,
+            <span class="author-block"><sup>2</sup>RED AIGC</span>,
+            <span class="author-block"><sup>3</sup>Shanghai Jiao Tong University</span><br>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://huggingface.co/spaces/ByteDance/Hyper-SD15-Scribble"
+                <a href="https://arxiv.org/"
                    class="external-link button is-normal is-rounded is-dark">
-                  <span>🤗&nbsp;&nbsp;Scribble Demo</span>
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=B4ieLnS4MTY"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/RedAIGC/Target-Driven-Distillation"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>  
+              <!-- huggingface Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/RED-AIGC/TDD"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>🤗&nbsp;&nbsp;Huggingface Model</span>
+                  </a>
+              <!-- huggingface Demo. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span>🤗&nbsp;&nbsp;Huggingface Demo</span>
                   </a>
               </span>
+            </div>
+
           </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-
+<!--=================Teasers==========================-->
 <section class="hero teaser">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <h2 class="subtitle has-text-justified">
         <figure style="width: 100%;">
           <a href="assets/figures/overview.png">
-              <img width="100%" src="static/images/hypersd_teaser_0420.png" />
+              <img width="100%" src="static/images/tdd_compare.png" />
           </a>
         </figure>
         
@@ -108,59 +171,44 @@
         stag, victorian inspired clothing by krenz cushart ... </i>, respectively.
   
     </div>
-  </div>
- 
-</div>
+
 </section>
 
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/teaser_video.mov"
-        type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        Real-Time Generation Demo of Hyper-SD.
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
-<section class="hero teaser">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-six-fifths">
-        <h2 class="title is-2, columns is-centered">Abstract</h2>
-      <br>
+<!--=================paper Video==========================-->
+<!-- <section class="hero is-light is-small">
+  <div class="columns is-centered has-text-centered"  style="margin-top: 10px; margin-bottom: 20px;">
+    <div class="column is-three-fifths">
+      <h2 class="title is-3">Video</h2>
+      
+      <div class="publication-video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/B4ieLnS4MTY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
       
     </div>
   </div>
- 
-    
-  <p class="content has-text-justified">
-    
-Recently, a series of diffusion-aware distillation algorithms have emerged to alleviate the computational overhead associated with the multi-step inference process of Diffusion Models (DMs). Current distillation techniques often dichotomize into two distinct aspects: i) ODE Trajectory Preservation; and ii) ODE Trajectory Reformulation. However, these approaches suffer from severe performance degradation or domain shifts. To address these limitations, we propose <b><i><span style="color: red;">Hyper-SD</span></i></b>, a novel framework that synergistically amalgamates the advantages of ODE Trajectory Preservation and Reformulation, while maintaining near-lossless performance during step compression.
-Firstly, we introduce Trajectory Segmented Consistency Distillation to progressively perform consistent distillation within pre-defined time-step segments, which facilitates the preservation of the original ODE trajectory from a higher-order perspective.
-Secondly, we incorporate human feedback learning to boost the performance of the model in a low-step regime and mitigate the performance loss incurred by the distillation process. 
-Thirdly, we integrate score distillation to further improve the low-step generation capability of the model and offer the first attempt to leverage a unified LoRA to support the inference process at all steps.
-Extensive experiments and user studies demonstrate that Hyper-SD achieves SOTA performance from 1 to 8 inference steps for both SDXL and SD1.5.
-For example, Hyper-SDXL surpasses SDXL-Lightning by  <b>+0.68</b> in CLIP Score and <b>+0.51</b> in Aes Score in the 1-step inference. 
+</section> -->
 
 
-
-   </p>
-</div>
+<!--=================Abstract==========================-->
+<section class="hero teaser">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-six-fifths"><!-- <div class="column is-six-fifths"> -->
+        <h2 class="title is-2, columns is-centered">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Consistency distillation methods have demonstrated significant success in accelerating generative tasks of diffusion models. However, since previous consistency distillation methods use simple and straightforward strategies in selecting target timesteps, they usually struggle with blurs and detail losses in generated images. To address these limitations, we introduce Target-Driven Distillation (<b><span style="color: red;">TDD</span></b>), which (1) adopts a delicate selection strategy of target timesteps, increasing the training efficiency; (2) utilizes decoupled guidances during training, making TDD open to post-tuning on guidance scale during inference periods; (3) can be optionally equipped with non-equidistant sampling and x0 clipping, enabling a more flexible and accurate way for image sampling.
+Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
+      </div>
+    </div>
+  </div>
 </section>
 
 
-
-<section class="section hero">
+<!--/ Framework. -->
+<section class="section hero", style="margin-top:-120px;">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
@@ -170,7 +218,7 @@ For example, Hyper-SDXL surpasses SDXL-Lightning by  <b>+0.68</b> in CLIP Score 
       <h2 class="subtitle has-text-justified">
         <figure style="width: 100%;">
           <a href="assets/figures/overview.png">
-              <img width="100%" src="static/images/hypersd_pipeline.png" />
+              <img width="100%" src="static/images/tdd_overview.jpg" />
           </a>
         </figure>
       </h2>
@@ -178,91 +226,169 @@ For example, Hyper-SDXL surpasses SDXL-Lightning by  <b>+0.68</b> in CLIP Score 
   </div>
   <p>
     Hyper-SD take the two-stage Progressive Consistency Distillation. The first stage involves consistency distillation in two separate time segments: [0, T/2] and [T/2 , T] to obtain the two segments consistency ODE. Then, this ODE trajectory is adopted to train a global consistency model in the subsequent stage
-   </p>
+    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
+    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
+    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
+    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
+  </p>
 </div>
 </section>
 
-
-
-<section class="section hero">
+<section class="section hero", style="margin-top:-120px;">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">Experiment</h2>
 
         <div class="content has-text-justified">
-          <img src="static/images/hypersd_sdxl_results.png" />
+          <img src="static/images/tdd_1.png" />
         </div>
         <p class="content has-text-justified">
           Qualitative comparisons between Hyper-SD and other LoRA-based acceleration approaches on SDXL architecture.
         </p>
-
-        <div class="content has-text-justified">
-          <img src="static/images/hypersd_sd15_results.png" />
-        </div>
-
-        <p class="content has-text-justified">
-          Qualitative comparisons between Hyper-SD and other LoRA-based acceleration approaches on SD15 architecture.
-         
-        </p>
-
-           
-      
-
-        <div class="content has-text-justified">
-          <img src="static/images/hypersd_gsb.png" />
-        </div>
-        <p class="content has-text-justified">
-          Hyper-SD exhibits a remarkable superiority over existing methods that concentrate on acceleration and obtain more user preference on both SD1.5 and SDXL architectures.
-        </p>
-       
-        <div class="content has-text-justified">
-          <img src="static/images/hypersd_base_results.png" />
-        </div>
-        <p class="content has-text-justified">
-          Hyper-SD LoRAs with different steps can be applied to different base models and consistently generate high-quality images
-        </p>
-
-        <div class="content has-text-justified">
-          <img src="static/images/hypersd_controlnet_results.png" />
-        </div>
-        <p class="content has-text-justified">
-          The unified LoRAs of Hyper-SD are compatible with ControlNet. The examples are conditioned on either scribble or canny images.
-        </p>
-
 
       </div>
       
     </div>
   </div>
 </section>
+<!-- ControlNet -->
+<section class="section">
+  <div class="container" , style="margin-top:-100px;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Gallery of Stable Diffusion XL + TDD</h2>
+        <h2 class="subtitle has-text-centered">Images generated by TDD w/o adv and TDD w/ adv</h2>
+
+        <!-- Supp Long Figures -->
+        <div id="results-carousel-face" class="carousel results-carousel">
+          <div class="item item-sdxl_1">
+            <div class="carousel-content">
+              <img src="static/images/tdd_show_1.png"
+                      alt="sdxl_4step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sdxl_2">
+            <div class="carousel-content">
+              <img src="static/images/tdd_show_2.png"
+                      alt="sdxl_5step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sdxl_3">
+            <div class="carousel-content">
+              <img src="static/images/tdd_show_3.png"
+                      alt="sdxl_6step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sdxl_4">
+            <div class="carousel-content">
+              <img src="static/images/tdd_show_4.png"
+                      alt="sdxl_7step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sdxl_5">
+            <div class="carousel-content">
+              <img src="static/images/tdd_show_5.png"
+                      alt="sdxl_8step." style="width:800px;"/>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>  
+ 
+</section>
+
+<!-- LCM -->
+<!-- <section class="section" style="background-color: #f1f1f1;">
+  <div class="container  style="margin-top:30px;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Gallery of Stable Diffusion XL + PCM</h2>
+        <h2 class="subtitle has-text-centered">Images generated by PCM</h2>
+
+        <div id="results-carousel-face" class="carousel results-carousel">
+          <div class="item item-sd_xl_1">
+            <div class="carousel-content">
+              <img src="freeu_img_vid/sd_xl/sd_xl_1.png"
+                      alt="sd_xl_1step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sd_xl_2">
+            <div class="carousel-content">
+              <img src="freeu_img_vid/sd_xl/sd_xl_2.png"
+                      alt="sd_xl_2step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sd_xl_3">
+            <div class="carousel-content">
+              <img src="freeu_img_vid/sd_xl/sd_xl_4.png"
+                      alt="sd_xl_4step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sd_xl_4">
+            <div class="carousel-content">
+              <img src="freeu_img_vid/sd_xl/sd_xl_8.png"
+                      alt="sd_xl_8step." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sd_xl_5">
+            <div class="carousel-content">
+              <img src="freeu_img_vid/sd_xl/sd_xl_16_1.png"
+                      alt="sd_xl_16step_1." style="width:800px;"/>
+            </div>
+          </div>
+          <div class="item item-sd_xl_6">
+            <div class="carousel-content">
+              <img src="freeu_img_vid/sd_xl/sd_xl_16_2.png"
+                      alt="sd_xl_16step_2." style="width:800px;"/>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>  
+ 
+ 
+</section>
+
+ -->
+
 
 <section class="section" id="BibTeX">
-  <div class="container content is-max-desktop">
+  <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@misc{ren2024hypersd,
-      title={Hyper-SD: Trajectory Segmented Consistency Model for Efficient Image Synthesis}, 
-      author={Yuxi Ren and Xin Xia and Yanzuo Lu and Jiacheng Zhang and Jie Wu and Pan Xie and Xing Wang and Xuefeng Xiao},
-      year={2024},
-      eprint={2404.13686},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+    <pre><code>@article{wang2024phased,
+  author    = {Fu-Yun Wang, Zhaoyang Huang, Alexander William Bergman, Dazhong Shen, Peng Gao, Michael Lingelbach3, Keqiang Sun1, Weikang Bian, Guanglu Song, Yu Liu, Hongsheng Li, Xiaogang Wang},
+  title     = {Phased Consistency Model},
+  year      = {2024},
 }</code></pre>
   </div>
 </section>
 
+  
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link" href="https://arxiv.org/pdf/2401.04468.pdf">
+<!--       <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
         <i class="fas fa-file-pdf"></i>
-      </a>
+      </a> -->
+<!--       <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
     </div>
     <div class="columns is-centered">
-      <div class="column is-6">
+      <div class="column is-8">
         <div class="content">
           <p>
-             The source code of this webpage is based on the <a href="https://github.com/nerfies/nerfies.github.io/"> Nerfies</a> project webpage.
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
         </div>
       </div>
@@ -270,6 +396,103 @@ For example, Hyper-SDXL surpasses SDXL-Lightning by  <b>+0.68</b> in CLIP Score 
   </div>
 </footer>
 
-<script type="text/javascript" src="./static/slick/slick.min.js"></script>
+<!-- Image Slider Javascripts -->
+<!--=================Functions==========================-->
+<!-- <script src="static/js/juxtapose.js"></script>
+
+<script>
+  var slider;
+  let origImages = [
+    { "src": "freeu_img_vid/t2i/lcm1.png", "label": "LCM", },
+    { "src": "freeu_img_vid/t2i/pcm1.png", "label": "PCM", }
+  ];
+
+  let origOptions = {
+    "makeResponsive": true,
+    "showLabels": true,
+    "mode": "horizontal",
+    "showCredits": true,
+    "animate": true,
+    "startingPosition": "50"
+  };
+
+  const juxtaposeSelector = "#juxtapose-embed";
+  const transientSelector = "#juxtapose-hidden";
+
+  
+  function tab_gallery_click(name) {
+    // Get the expanded image
+    let inputImage = {
+      label: "LCM",
+    };
+    let outputImage = {
+      label: "PCM",
+    };
+
+    inputImage.src = "freeu_img_vid/t2i/".concat("lcm",name, ".png")
+    outputImage.src = "freeu_img_vid/t2i/".concat("pcm",name, ".png")
+
+    let images = [inputImage, outputImage];
+    let options = slider.options;
+    options.callback = function (obj) {
+      var newNode = document.getElementById(obj.selector.substring(1));
+      var oldNode = document.getElementById(juxtaposeSelector.substring(1));
+      console.log(obj.selector.substring(1));
+      console.log(newNode.children[0]);
+      oldNode.replaceChild(newNode.children[0], oldNode.children[0]);
+      //newNode.removeChild(newNode.children[0]);
+
+    };
+
+    slider = new juxtapose.JXSlider(transientSelector, images, options);
+  };
+
+  (function () {
+    slider = new juxtapose.JXSlider(
+      juxtaposeSelector, origImages, origOptions);
+    //document.getElementById("left-button").onclick = replaceLeft;
+    //document.getElementById("right-button").onclick = replaceRight;
+  })();
+  // Get the image text
+  var imgText = document.getElementById("imgtext");
+  // Use the same src in the expanded image as the image being clicked on from the grid
+  // expandImg.src = imgs.src;
+  // Use the value of the alt attribute of the clickable image as text inside the expanded image
+  imgText.innerHTML = name;
+  // Show the container element (hidden with CSS)
+  // expandImg.parentElement.style.display = "block";
+
+  $(".flip-card").click(function () {
+    console.log("fading in")
+    div_back = $(this).children().children()[1]
+    div_front = $(this).children().children()[0]
+    // console.log($(this).children("div.flip-card-back"))
+    console.log(div_back)
+    $(div_front).addClass("out");
+    $(div_front).removeClass("in");
+
+    $(div_back).addClass("in");
+    $(div_back).removeClass("out");
+
+  });
+
+  $(".flip-card").mouseleave(function () {
+    console.log("fading in")
+    div_back = $(this).children().children()[1]
+    div_front = $(this).children().children()[0]
+    // console.log($(this).children("div.flip-card-back"))
+    console.log(div_back)
+    $(div_front).addClass("in");
+    $(div_front).removeClass("out");
+
+    $(div_back).addClass("out");
+    $(div_back).removeClass("in");
+
+  });
+</script>
+ -->
+
 </body>
 </html>
+
+
