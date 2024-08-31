@@ -165,10 +165,7 @@
         
       </h2 >
       
-        Visual Comparison between Hyper-SD and Other Methods. From the first column to the fourth column, the prompts of these images are (1)
-        <i>A dog wearing a white t-shirt, with the word “hyper” written on it ...</i> (2) <i>Abstract beauty, approaching perfection, pure form,
-        golden ratio, minimalistic, unfinished, ...</i> (3) <i>A crystal heart laying on moss in a serene zen garden ... </i>(4)<i>Anthropomorphic art of a scientist
-        stag, victorian inspired clothing by krenz cushart ... </i>, respectively.
+      Visual comparison among different methods. Additionally, we have released a detailed comparison between our method and TCD. Our method demonstrates advantages in both image complexity and clarity.
   
     </div>
 
@@ -199,7 +196,7 @@
         <h2 class="title is-2, columns is-centered">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Consistency distillation methods have demonstrated significant success in accelerating generative tasks of diffusion models. However, since previous consistency distillation methods use simple and straightforward strategies in selecting target timesteps, they usually struggle with blurs and detail losses in generated images. To address these limitations, we introduce Target-Driven Distillation (<b><span style="color: red;">TDD</span></b>), which (1) adopts a delicate selection strategy of target timesteps, increasing the training efficiency; (2) utilizes decoupled guidances during training, making TDD open to post-tuning on guidance scale during inference periods; (3) can be optionally equipped with non-equidistant sampling and x0 clipping, enabling a more flexible and accurate way for image sampling.
+            Consistency distillation methods have demonstrated significant success in accelerating generative tasks of diffusion models. However, since previous consistency distillation methods use simple and straightforward strategies in selecting target timesteps, they usually struggle with blurs and detail losses in generated images. To address these limitations, we introduce Target-Driven Distillation (<b><span style="color: red;">TDD</span></b>), which (1) adopts a delicate selection strategy of target timesteps, increasing the training efficiency; (2) utilizes decoupled guidances during training, making TDD open to post-tuning on guidance scale during inference periods; (3) can be optionally equipped with non-equidistant sampling and  <span>x<sub>0</sub></span> clipping, enabling a more flexible and accurate way for image sampling.
 Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
       </div>
     </div>
@@ -225,11 +222,10 @@ Experiments verify that TDD achieves state-of-the-art performance in few-step ge
     </div>
   </div>
   <p>
-    Hyper-SD take the two-stage Progressive Consistency Distillation. The first stage involves consistency distillation in two separate time segments: [0, T/2] and [T/2 , T] to obtain the two segments consistency ODE. Then, this ODE trajectory is adopted to train a global consistency model in the subsequent stage
-    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
-    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
-    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
-    Experiments verify that TDD achieves state-of-the-art performance in few-step generation, offering a better choice among consistency distillation models.
+    We propose <b>Target-Driven Distillation (TDD)</b>, a multi-target approach that emphasizes delicately selected target timesteps during distillation processes. Our method involves three key designs: 
+    <b>Firstly</b>, for any timestep, it selects a nearby timestep forward that falls into a few-step equidistant denoising schedule of a predefined set of schedules (<i>e.g.</i> 4--8 steps), which eliminates long-distance predictions while only focusing on the timesteps we will probably pass through during inference periods under different schedules. Also, TDD incorporates a stochastic offset that further pushes the selected timestep ahead towards the final target timestep, in order to accommodate non-deterministic sampling such as &gamma;-sampling.
+    <b>Secondly</b>, while distilling classifier-free guidance (CFG) into the distilled models, to align with the standard training process using CFG, TDD additionally replaces a portion of the text conditions with unconditional (<i>i.e.</i> empty) prompts. With such a design, TDD is open to a proposed inference-time tuning technique on guidance scale, allowing user-specified balances between the accuracy and the richness of image contents conditioned on text prompts.
+    <b>Finally</b>, TDD is optionally equipped with a non-equidistant sampling method doing short-distance predictions at initial steps and long-distance ones at later steps, which helps to improve overall image quality. Additionally, TDD adopts <span>x<sub>0</sub></span> clipping to prevent out-of-bound predictions and address the overexposure issue.
   </p>
 </div>
 </section>
@@ -244,7 +240,7 @@ Experiments verify that TDD achieves state-of-the-art performance in few-step ge
           <img src="static/images/tdd_1.png" />
         </div>
         <p class="content has-text-justified">
-          Qualitative comparisons between Hyper-SD and other LoRA-based acceleration approaches on SDXL architecture.
+          Qualitative comparison of different methods under NEF for 4 to 8 steps.
         </p>
 
       </div>
@@ -252,9 +248,10 @@ Experiments verify that TDD achieves state-of-the-art performance in few-step ge
     </div>
   </div>
 </section>
-<!-- ControlNet -->
+
+<!-- Showcase -->
 <section class="section">
-  <div class="container" , style="margin-top:-100px;">
+  <div class="container" , style="margin-top:-80px;">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Gallery of Stable Diffusion XL + TDD</h2>
@@ -301,49 +298,32 @@ Experiments verify that TDD achieves state-of-the-art performance in few-step ge
  
 </section>
 
-<!-- LCM -->
-<!-- <section class="section" style="background-color: #f1f1f1;">
-  <div class="container  style="margin-top:30px;">
+<!-- Showcase -->
+<section class="section">
+  <div class="container" , style="margin-top:-80px;">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Gallery of Stable Diffusion XL + PCM</h2>
-        <h2 class="subtitle has-text-centered">Images generated by PCM</h2>
+        <h2 class="title is-3">Gallery of TDD + Different Base/Lora/ControlNet</h2>
+        <h2 class="subtitle has-text-centered">Images generated by TDD w/o adv and TDD w/ adv</h2>
 
+        <!-- Supp Long Figures -->
         <div id="results-carousel-face" class="carousel results-carousel">
-          <div class="item item-sd_xl_1">
+          <div class="item item-sdxl_more_1">
             <div class="carousel-content">
-              <img src="freeu_img_vid/sd_xl/sd_xl_1.png"
-                      alt="sd_xl_1step." style="width:800px;"/>
+              <img src="static/images/tdd_show_6.png"
+                      alt="sdxl_diff_base." style="width:800px;"/>
             </div>
           </div>
-          <div class="item item-sd_xl_2">
+          <div class="item item-sdxl_more_2">
             <div class="carousel-content">
-              <img src="freeu_img_vid/sd_xl/sd_xl_2.png"
-                      alt="sd_xl_2step." style="width:800px;"/>
+              <img src="static/images/tdd_show_7.png"
+                      alt="sdxl_diff_lora." style="width:800px;"/>
             </div>
           </div>
-          <div class="item item-sd_xl_3">
+          <div class="item item-sdxl_more_3">
             <div class="carousel-content">
-              <img src="freeu_img_vid/sd_xl/sd_xl_4.png"
-                      alt="sd_xl_4step." style="width:800px;"/>
-            </div>
-          </div>
-          <div class="item item-sd_xl_4">
-            <div class="carousel-content">
-              <img src="freeu_img_vid/sd_xl/sd_xl_8.png"
-                      alt="sd_xl_8step." style="width:800px;"/>
-            </div>
-          </div>
-          <div class="item item-sd_xl_5">
-            <div class="carousel-content">
-              <img src="freeu_img_vid/sd_xl/sd_xl_16_1.png"
-                      alt="sd_xl_16step_1." style="width:800px;"/>
-            </div>
-          </div>
-          <div class="item item-sd_xl_6">
-            <div class="carousel-content">
-              <img src="freeu_img_vid/sd_xl/sd_xl_16_2.png"
-                      alt="sd_xl_16step_2." style="width:800px;"/>
+              <img src="static/images/tdd_show_8.png"
+                      alt="sdxl_diff_ctrl." style="width:800px;"/>
             </div>
           </div>
         </div>
@@ -353,22 +333,19 @@ Experiments verify that TDD achieves state-of-the-art performance in few-step ge
     </div>
   </div>  
  
- 
 </section>
 
- -->
 
-
-<section class="section" id="BibTeX">
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{wang2024phased,
-  author    = {Fu-Yun Wang, Zhaoyang Huang, Alexander William Bergman, Dazhong Shen, Peng Gao, Michael Lingelbach3, Keqiang Sun1, Weikang Bian, Guanglu Song, Yu Liu, Hongsheng Li, Xiaogang Wang},
-  title     = {Phased Consistency Model},
-  year      = {2024},
+    <pre><code>@article{,
+  author    = {},
+  title     = {},
+  year      = {},
 }</code></pre>
   </div>
-</section>
+</section> -->
 
   
 <footer class="footer">
@@ -396,103 +373,5 @@ Experiments verify that TDD achieves state-of-the-art performance in few-step ge
   </div>
 </footer>
 
-<!-- Image Slider Javascripts -->
-<!--=================Functions==========================-->
-<!-- <script src="static/js/juxtapose.js"></script>
-
-<script>
-  var slider;
-  let origImages = [
-    { "src": "freeu_img_vid/t2i/lcm1.png", "label": "LCM", },
-    { "src": "freeu_img_vid/t2i/pcm1.png", "label": "PCM", }
-  ];
-
-  let origOptions = {
-    "makeResponsive": true,
-    "showLabels": true,
-    "mode": "horizontal",
-    "showCredits": true,
-    "animate": true,
-    "startingPosition": "50"
-  };
-
-  const juxtaposeSelector = "#juxtapose-embed";
-  const transientSelector = "#juxtapose-hidden";
-
-  
-  function tab_gallery_click(name) {
-    // Get the expanded image
-    let inputImage = {
-      label: "LCM",
-    };
-    let outputImage = {
-      label: "PCM",
-    };
-
-    inputImage.src = "freeu_img_vid/t2i/".concat("lcm",name, ".png")
-    outputImage.src = "freeu_img_vid/t2i/".concat("pcm",name, ".png")
-
-    let images = [inputImage, outputImage];
-    let options = slider.options;
-    options.callback = function (obj) {
-      var newNode = document.getElementById(obj.selector.substring(1));
-      var oldNode = document.getElementById(juxtaposeSelector.substring(1));
-      console.log(obj.selector.substring(1));
-      console.log(newNode.children[0]);
-      oldNode.replaceChild(newNode.children[0], oldNode.children[0]);
-      //newNode.removeChild(newNode.children[0]);
-
-    };
-
-    slider = new juxtapose.JXSlider(transientSelector, images, options);
-  };
-
-  (function () {
-    slider = new juxtapose.JXSlider(
-      juxtaposeSelector, origImages, origOptions);
-    //document.getElementById("left-button").onclick = replaceLeft;
-    //document.getElementById("right-button").onclick = replaceRight;
-  })();
-  // Get the image text
-  var imgText = document.getElementById("imgtext");
-  // Use the same src in the expanded image as the image being clicked on from the grid
-  // expandImg.src = imgs.src;
-  // Use the value of the alt attribute of the clickable image as text inside the expanded image
-  imgText.innerHTML = name;
-  // Show the container element (hidden with CSS)
-  // expandImg.parentElement.style.display = "block";
-
-  $(".flip-card").click(function () {
-    console.log("fading in")
-    div_back = $(this).children().children()[1]
-    div_front = $(this).children().children()[0]
-    // console.log($(this).children("div.flip-card-back"))
-    console.log(div_back)
-    $(div_front).addClass("out");
-    $(div_front).removeClass("in");
-
-    $(div_back).addClass("in");
-    $(div_back).removeClass("out");
-
-  });
-
-  $(".flip-card").mouseleave(function () {
-    console.log("fading in")
-    div_back = $(this).children().children()[1]
-    div_front = $(this).children().children()[0]
-    // console.log($(this).children("div.flip-card-back"))
-    console.log(div_back)
-    $(div_front).addClass("in");
-    $(div_front).removeClass("out");
-
-    $(div_back).addClass("out");
-    $(div_back).removeClass("in");
-
-  });
-</script>
- -->
-
 </body>
 </html>
-
-
